@@ -1,60 +1,69 @@
 <!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ADMIN Top Country</title>
-<style>body{background:#111;color:#fff;font-family:Arial;padding:15px}input,select,button{width:100%;padding:14px;margin:8px 0;border-radius:10px;border:none;font-size:16px}button{background:#00ff88;color:#000;font-weight:bold}img{max-width:100%;border-radius:10px;margin-top:10px}.prod{background:#222;padding:10px;border-radius:10px;margin:10px 0}</style></head><body>
-<h2>ADMIN Top Country - COMPRESSOR ✅</h2>
-<input id="nome" placeholder="Nome ex: Bota Texana" value="Botas femininas">
-<input id="preco" type="number" placeholder="Preço 189.90">
-<label>Foto da galeria:</label>
+<style>body{background:#111;color:#fff;font-family:Arial;padding:15px;max-width:500px;margin:auto}input,select,button{width:100%;padding:16px;margin:10px 0;border-radius:12px;border:none;font-size:17px}button{background:#00ff88;color:#000;font-weight:bold;font-size:18px}img{max-width:100%;border-radius:12px;margin:10px 0}.ok{background:#00ff88;color:#000;padding:12px;border-radius:10px;text-align:center;display:none}#status{background:#222;padding:10px;border-radius:10px;margin-top:10px;white-space:pre-wrap}</style></head><body>
+<h2>👢 ADMIN Top Country</h2>
+<p style="opacity:.7">Adicionar bota nova</p>
+<input id="nome" placeholder="Nome ex: Bota Texana Marrom" value="Bota Texana Marrom">
+<input id="preco" type="number" placeholder="Preço ex: 189.90" value="189.90">
+<label>Foto:</label>
 <input id="file" type="file" accept="image/*">
-<img id="preview" style="display:none">
-<input id="desc" placeholder="Descrição">
+<img id="prev" style="display:none">
+<input id="desc" placeholder="Descrição" value="Couro legítimo - Top Country Capelinha">
 <select id="cat"><option>Botas</option><option>Botinas</option><option>Chapéus</option><option>Cintos</option></select>
-<button id="btn" onclick="salvar()">SALVAR NA NUVEM</button>
+<button id="btn" onclick="salvar()">✅ SALVAR BOTA NO SITE</button>
 <div id="status"></div>
-<div id="lista"></div>
+<div id="ok" class="ok">✅ Bota adicionada! Site atualiza em 1 min.</div>
 <script>
-const SUPABASE_URL="https://hdflyxsygkxpveyjtsan.supabase.co";
-const SUPABASE_KEY="sb_publishable_jT6Lm8ABbiFTw_9r-XtmKA_w5R2qJm_";
-let imagemBase64="";
+const REPO="bgxsites-bot/topcountry";
+const TOKEN="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";
+let base64Data=""; let fileName="";
 document.getElementById('file').addEventListener('change',e=>{
- const f=e.target.files[0]; if(!f) return;
- document.getElementById('status').innerText='Comprimindo...';
- const reader=new FileReader();
- reader.onload=ev=>{
-   const img=new Image();
-   img.onload=()=>{
-     const canvas=document.createElement('canvas');
-     const max=800;
-     let w=img.width,h=img.height;
-     if(w>h){if(w>max){h*=max/w;w=max}}else{if(h>max){w*=max/h;h=max}}
-     canvas.width=w;canvas.height=h;
-     canvas.getContext('2d').drawImage(img,0,0,w,h);
-     imagemBase64=canvas.toDataURL('image/jpeg',0.7);
-     const p=document.getElementById('preview');p.src=imagemBase64;p.style.display='block';
-     document.getElementById('status').innerText='Foto pronta! Agora clica SALVAR.';
-   };
-   img.src=ev.target.result;
- };
- reader.readAsDataURL(f);
+  const f=e.target.files[0]; if(!f)return;
+  fileName=Date.now()+'-'+f.name.replace(/\s/g,'-').toLowerCase();
+  const r=new FileReader();
+  r.onload=ev=>{
+    const img=new Image();
+    img.onload=()=>{
+      const c=document.createElement('canvas'); let w=img.width,h=img.height; const max=800;
+      if(w>h){if(w>max){h*=max/w;w=max}}else{if(h>max){w*=max/h;h=max}}
+      c.width=w;c.height=h; c.getContext('2d').drawImage(img,0,0,w,h);
+      const dataUrl=c.toDataURL('image/jpeg',0.7);
+      base64Data=dataUrl.split(',')[1];
+      document.getElementById('prev').src=dataUrl;
+      document.getElementById('prev').style.display='block';
+      document.getElementById('status').innerText='Foto pronta! ✅ Agora clica SALVAR';
+    }; img.src=ev.target.result;
+  }; r.readAsDataURL(f);
 });
 async function salvar(){
- const nome=document.getElementById('nome').value;
- const preco=parseFloat(document.getElementById('preco').value)||189.9;
- const descricao=document.getElementById('desc').value;
- const categoria=document.getElementById('cat').value;
- if(!imagemBase64){alert('Escolhe a foto primeiro!');return;}
- document.getElementById('btn').disabled=true;
- document.getElementById('status').innerText='Salvando na nuvem... 5 seg';
- const res=await fetch(`${SUPABASE_URL}/rest/v1/produtos`,{method:'POST',headers:{apikey:SUPABASE_KEY,Authorization:`Bearer ${SUPABASE_KEY}`,'Content-Type':'application/json',Prefer:'return=representation'},body:JSON.stringify({nome,preco,imagem:imagemBase64,descricao,categoria,ordem:Date.now()})});
- if(res.ok){document.getElementById('status').innerText='✅ Salvo na NUVEM!';listar();}
- else{document.getElementById('status').innerText='Erro: '+(await res.text())}
- document.getElementById('btn').disabled=false;
+  const nome=document.getElementById('nome').value; const preco=parseFloat(document.getElementById('preco').value);
+  const desc=document.getElementById('desc').value; const cat=document.getElementById('cat').value;
+  if(!nome||!preco||!base64Data){alert('Preenche nome, preço e foto!');return;}
+  document.getElementById('btn').disabled=true;
+  document.getElementById('status').innerText='⏳ 1/2 Enviando foto...';
+  try{
+    let upImg=await fetch(`https://api.github.com/repos/${REPO}/contents/${fileName}`,{
+      method:'PUT', headers:{Authorization:`token ${TOKEN}`,'Content-Type':'application/json'},
+      body:JSON.stringify({message:'nova bota '+nome, content:base64Data})
+    });
+    if(!upImg.ok) throw new Error('Erro ao subir foto: '+await upImg.text());
+    document.getElementById('status').innerText='⏳ 2/2 Atualizando site...';
+    let res=await fetch(`https://api.github.com/repos/${REPO}/contents/tc-data.js`,{headers:{Authorization:`token ${TOKEN}`}});
+    let data=await res.json();
+    let conteudo="";
+    try{conteudo=decodeURIComponent(escape(atob(data.content)))}catch(e){conteudo=atob(data.content)}
+    let produtos=[];
+    try{ const m=conteudo.match(/const produtos = (\[[\s\S]*?\]);/); if(m) produtos=JSON.parse(m[1]); }catch(e){produtos=[];}
+    const novaBota={id:Date.now(), nome, preco, imagem:`https://raw.githubusercontent.com/${REPO}/main/${fileName}`, descricao:desc, categoria:cat, ordem:Date.now()};
+    produtos.unshift(novaBota);
+    const novoArquivo=`const produtos = ${JSON.stringify(produtos,null,2)};\nif(typeof window!=='undefined'){window.produtos=produtos; localStorage.setItem('tc_produtos',JSON.stringify(produtos));}`;
+    let upJs=await fetch(`https://api.github.com/repos/${REPO}/contents/tc-data.js`,{
+      method:'PUT', headers:{Authorization:`token ${TOKEN}`,'Content-Type':'application/json'},
+      body:JSON.stringify({message:'add '+nome, content:btoa(unescape(encodeURIComponent(novoArquivo))), sha:data.sha})
+    });
+    if(!upJs.ok) throw new Error('Erro ao atualizar site: '+await upJs.text());
+    document.getElementById('status').innerText=''; document.getElementById('ok').style.display='block';
+  }catch(err){document.getElementById('status').innerText='❌ Erro: '+err.message;}
+  document.getElementById('btn').disabled=false;
 }
-async function listar(){
- const res=await fetch(`${SUPABASE_URL}/rest/v1/produtos?select=*&order=ordem.desc`,{headers:{apikey:SUPABASE_KEY,Authorization:`Bearer ${SUPABASE_KEY}`}});
- const data=await res.json();
- document.getElementById('lista').innerHTML=`<h3>Produtos: ${data.length}</h3>`+data.map(p=>`<div class=prod><b>${p.nome}</b> - R$${p.preco}<br><img src="${p.imagem}" width=100><br><button onclick="del(${p.id})" style="background:red;color:#fff;padding:5px">Apagar</button></div>`).join('');
-}
-async function del(id){if(!confirm('Apagar?'))return;await fetch(`${SUPABASE_URL}/rest/v1/produtos?id=eq.${id}`,{method:'DELETE',headers:{apikey:SUPABASE_KEY,Authorization:`Bearer ${SUPABASE_KEY}`}});listar();}
-listar();
 </script></body></html>
