@@ -9,4 +9,6 @@ const produtos = [
     "ordem": 1788718905763
   }
 ];
-if(typeof window!=='undefined'){window.produtos=produtos;}
+window.produtos = produtos;
+export { produtos };
+export default { produtos };
