@@ -515,7 +515,7 @@ class Component extends DCLogic {
   state = { scrolled: false, menu: false, cfg: null, produtos: [] };
 
   async componentDidMount0() {
-    this.data = await import('./tc-data.js');
+  this.data = await import('./tc-data.js?v=3');
     const [cfg, produtos] = await Promise.all([this.data.getConfig(), this.data.listProducts()]);
     this.setState({ cfg, produtos });
   }
