@@ -1,67 +1,34 @@
 <!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ADMIN Top Country</title>
-<style>body{background:#111;color:#fff;font-family:Arial;padding:15px;max-width:500px;margin:auto}input,select,button{width:100%;padding:16px;margin:10px 0;border-radius:12px;border:none;font-size:17px}button{background:#00ff88;color:#000;font-weight:bold;font-size:18px}img{max-width:100%;border-radius:12px;margin:10px 0}.ok{background:#00ff88;color:#000;padding:12px;border-radius:10px;text-align:center;display:none}#status{background:#222;padding:10px;border-radius:10px;margin-top:10px;white-space:pre-wrap}</style></head><body>
-<h2>👢 ADMIN Top Country</h2>
-<input id="nome" placeholder="Nome ex: Bota Texana Marrom" value="Bota Texana Marrom">
-<input id="preco" type="number" placeholder="Preço ex: 189.90" value="189.90">
-<label>Foto:</label>
-<input id="file" type="file" accept="image/*">
-<img id="prev" style="display:none">
-<input id="desc" placeholder="Descrição" value="Couro legítimo - Top Country Capelinha">
-<select id="cat"><option>Botas</option><option>Botinas</option><option>Chapéus</option><option>Cintos</option></select>
-<button id="btn" onclick="salvar()">✅ SALVAR BOTA NO SITE</button>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin TopCountry</title>
+<style>body{font-family:Arial;padding:20px;max-width:500px;margin:auto;background:#f5f5f5}.card{background:white;padding:20px;border-radius:12px}input,textarea,select{width:100%;padding:12px;margin:8px 0 16px;border:1px solid #ddd;border-radius:8px;box-sizing:border-box}button{background:#111;color:white;padding:14px;width:100%;border:none;border-radius:8px;font-weight:bold}button:disabled{opacity:.5}#status{margin-top:15px;padding:12px;border-radius:8px;display:none}.success{background:#d1fae5}.error{background:#fee2e2}</style>
+</head>
+<body>
+<div class="card">
+<h2>Adicionar Produto</h2>
+<input id="nome" placeholder="Nome"><input id="preco" type="number" step="0.01" placeholder="Preço">
+<textarea id="descricao" placeholder="Descrição"></textarea>
+<select id="categoria"><option value="bone">Boné</option><option value="camiseta">Camiseta</option><option value="calca">Calça</option><option value="outro">Outro</option></select>
+<input id="imagem" type="file" accept="image/*">
+<button id="btn" onclick="salvar()">Salvar Produto</button>
 <div id="status"></div>
-<div id="ok" class="ok">✅ Bota adicionada! Site atualiza em 1 min.</div>
+</div>
 <script>
-const REPO="bgxsites-bot/topcountry";
-// token escondido pra GitHub não apagar
-const p1="ghp_VYwfaxwsGTxL9p8"; const p2="wKYu7n9xNgR57TD08lj8Z"; const TOKEN=p1+p2;
-let base64Data=""; let fileName="";
-document.getElementById('file').addEventListener('change',e=>{
-  const f=e.target.files[0]; if(!f)return;
-  fileName=Date.now()+'-'+f.name.replace(/\s/g,'-').toLowerCase();
-  const r=new FileReader();
-  r.onload=ev=>{
-    const img=new Image();
-    img.onload=()=>{
-      const c=document.createElement('canvas'); let w=img.width,h=img.height; const max=800;
-      if(w>h){if(w>max){h*=max/w;w=max}}else{if(h>max){w*=max/h;h=max}}
-      c.width=w;c.height=h; c.getContext('2d').drawImage(img,0,0,w,h);
-      const dataUrl=c.toDataURL('image/jpeg',0.7);
-      base64Data=dataUrl.split(',')[1];
-      document.getElementById('prev').src=dataUrl;
-      document.getElementById('prev').style.display='block';
-      document.getElementById('status').innerText='Foto pronta! ✅ Clica SALVAR';
-    }; img.src=ev.target.result;
-  }; r.readAsDataURL(f);
-});
+const WORKER_URL = "https://blue-disk-81ce.bgxsites.workers.dev";
 async function salvar(){
-  const nome=document.getElementById('nome').value; const preco=parseFloat(document.getElementById('preco').value);
-  const desc=document.getElementById('desc').value; const cat=document.getElementById('cat').value;
-  if(!nome||!preco||!base64Data){alert('Preenche nome, preço e foto!');return;}
-  document.getElementById('btn').disabled=true;
-  document.getElementById('status').innerText='⏳ 1/2 Enviando foto...';
+  const btn=document.getElementById('btn'),status=document.getElementById('status');
+  const nome=document.getElementById('nome').value.trim(),preco=document.getElementById('preco').value,descricao=document.getElementById('descricao').value.trim(),categoria=document.getElementById('categoria').value,file=document.getElementById('imagem').files[0];
+  if(!nome||!preco||!file){alert('Preencha nome, preço e foto');return;}
+  btn.disabled=true;btn.textContent='Enviando...';status.style.display='block';status.textContent='Fazendo upload...';
   try{
-    let upImg=await fetch(`https://api.github.com/repos/${REPO}/contents/${fileName}`,{
-      method:'PUT', headers:{Authorization:`token ${TOKEN}`,'Content-Type':'application/json'},
-      body:JSON.stringify({message:'nova bota '+nome, content:base64Data})
-    });
-    if(!upImg.ok) throw new Error('Erro foto: '+await upImg.text());
-    document.getElementById('status').innerText='⏳ 2/2 Atualizando site...';
-    let res=await fetch(`https://api.github.com/repos/${REPO}/contents/tc-data.js`,{headers:{Authorization:`token ${TOKEN}`}});
-    let data=await res.json();
-    let conteudo=""; try{conteudo=decodeURIComponent(escape(atob(data.content)))}catch(e){conteudo=atob(data.content)}
-    let produtos=[]; try{const m=conteudo.match(/const produtos = (\[[\s\S]*?\]);/); if(m) produtos=JSON.parse(m[1])}catch(e){}
-    const nova={id:Date.now(), nome, preco, imagem:`https://raw.githubusercontent.com/${REPO}/main/${fileName}`, descricao:desc, categoria:cat, ordem:Date.now()};
-    produtos.unshift(nova);
-    const novo=`const produtos = ${JSON.stringify(produtos,null,2)};\nif(typeof window!=='undefined'){window.produtos=produtos; localStorage.setItem('tc_produtos',JSON.stringify(produtos));}`;
-    let upJs=await fetch(`https://api.github.com/repos/${REPO}/contents/tc-data.js`,{
-      method:'PUT', headers:{Authorization:`token ${TOKEN}`,'Content-Type':'application/json'},
-      body:JSON.stringify({message:'add '+nome, content:btoa(unescape(encodeURIComponent(novo))), sha:data.sha})
-    });
-    if(!upJs.ok) throw new Error('Erro site: '+await upJs.text());
-    document.getElementById('status').innerText=''; document.getElementById('ok').style.display='block';
-  }catch(err){document.getElementById('status').innerText='❌ '+err.message;}
-  document.getElementById('btn').disabled=false;
+    const base64=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.onerror=rej;r.readAsDataURL(file);});
+    const fileName=`prod_${Date.now()}.${file.name.split('.').pop()||'jpg'}`;
+    const resp=await fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fileName,imageBase64:base64,nome,preco,descricao,categoria})});
+    const json=await resp.json();if(!resp.ok||!json.ok) throw new Error(json.error||'Erro');
+    status.className='success';status.textContent='✅ Produto adicionado! Aparece no site em 1-2 min.';document.getElementById('nome').value='';document.getElementById('preco').value='';document.getElementById('descricao').value='';document.getElementById('imagem').value='';
+  }catch(e){status.className='error';status.textContent='❌ Erro: '+e.message;}finally{btn.disabled=false;btn.textContent='Salvar Produto';}
 }
-</script></body></html>
+</script>
+</body>
+</html>
