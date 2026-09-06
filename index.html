@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Top Country — Capelinha MG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400&family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{margin:0;background:#0B0B0B;color:#F4F0E8;font-family:Barlow,system-ui,sans-serif;overflow-x:clip}
+  a{color:#D8C5A3;text-decoration:none}
+  a:hover{color:#B08A45}
+  img{max-width:100%}
+  ::selection{background:#B08A45;color:#0B0B0B}
+  @keyframes tcKenburns{from{transform:scale(1) translate3d(0,0,0)}to{transform:scale(1.09) translate3d(0,-1.2%,0)}}
+  @keyframes tcRule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important}}
+</style>
+</helmet>
+
+<div style="width:100%;max-width:100%;overflow-x:clip;background:#0B0B0B">
+
+  <header style="{{ headerStyle }}">
+    <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,56px);height:clamp(64px,7vw,88px);display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="#inicio" style="display:flex;flex-direction:column;line-height:1;text-decoration:none">
+        <span style="font-family:'Bodoni Moda',serif;font-size:clamp(19px,2.1vw,26px);letter-spacing:.12em;color:#F4F0E8">TOP COUNTRY</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.42em;color:#B08A45;margin-top:6px">CAPELINHA — MG</span>
+      </a>
+
+      <nav style="display:none;gap:clamp(18px,2vw,30px);align-items:center;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase" data-desknav>
+        <a href="#inicio" style="color:#F4F0E8" style-hover="color:#B08A45">Início</a>
+        <a href="#masculino" style="color:#F4F0E8" style-hover="color:#B08A45">Masculino</a>
+        <a href="#feminino" style="color:#F4F0E8" style-hover="color:#B08A45">Feminino</a>
+        <a href="#infantil" style="color:#F4F0E8" style-hover="color:#B08A45">Infantil</a>
+        <a href="#botas" style="color:#F4F0E8" style-hover="color:#B08A45">Botas</a>
+        <a href="#acessorios" style="color:#F4F0E8" style-hover="color:#B08A45">Acessórios</a>
+        <a href="#sobre" style="color:#F4F0E8" style-hover="color:#B08A45">Sobre nós</a>
+        <a href="#contato" style="color:#F4F0E8" style-hover="color:#B08A45">Contato</a>
+      </nav>
+
+      <div style="display:flex;align-items:center;gap:14px">
+        <a href="{{ waShop }}" target="_blank" rel="noopener" style="display:none;border:1px solid #B08A45;color:#B08A45;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;padding:13px 22px" style-hover="background:#B08A45;color:#0B0B0B" data-deskcta>Comprar pelo WhatsApp</a>
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="display:flex;flex-direction:column;justify-content:center;gap:6px;width:46px;height:46px;padding:0 11px;background:transparent;border:1px solid rgba(216,197,163,.28);cursor:pointer" data-mobbtn>
+          <span style="{{ bar1 }}"></span>
+          <span style="{{ bar2 }}"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div style="{{ drawerStyle }}">
+    <nav style="display:flex;flex-direction:column;gap:4px;font-family:'Bodoni Moda',serif;font-size:26px;letter-spacing:.04em">
+      <a href="#inicio" onClick="{{ closeMenu }}" style="color:#F4F0E8;padding:10px 0;border-bottom:1px solid rgba(216,197,163,.12)">Início</a>
+      <a href="#masculino" onClick="{{ closeMenu }}" style="color:#F4F0E8;padding:10px 0;border-bottom:1px solid rgba(216,197,163,.12)">Masculino</a>
+      <a href="#feminino" onClick="{{ closeMenu }}" style="color:#F4F0E8;padding:10px 0;border-bottom:1px solid rgba(216,197,163,.12)">Feminino</a>
+      <a href="#infantil" onClick="{{ closeMenu }}" style="color:#F4F0E8;padding:10px 0;border-bottom:1px solid rgba(216,197,163,.12)">Infantil</a>
+      <a href="#botas" onClick="{{ closeMenu }}" style="color:#F4F0E8;padding:10px 0;border-bottom:1px solid rgba(216,197,163,.12)">Botas</a>
+      <a href="#acessorios" onClick="{{ closeMenu }}" style="color:#F4F0E8;padding:10px 0;border-bottom:1px solid rgba(216,197,163,.12)">Acessórios</a>
+      <a href="#sobre" onClick="{{ closeMenu }}" style="color:#F4F0E8;padding:10px 0;border-bottom:1px solid rgba(216,197,163,.12)">Sobre nós</a>
+      <a href="#contato" onClick="{{ closeMenu }}" style="color:#F4F0E8;padding:10px 0;border-bottom:1px solid rgba(216,197,163,.12)">Contato</a>
+    </nav>
+    <a href="{{ waShop }}" target="_blank" rel="noopener" style="margin-top:34px;display:block;text-align:center;background:#B08A45;color:#0B0B0B;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.22em;text-transform:uppercase;padding:18px">Comprar pelo WhatsApp</a>
+  </div>
+
+  <section id="inicio" data-bootstage style="position:relative;height:100svh;min-height:600px;background:#0B0B0B">
+    <div style="position:sticky;top:0;height:100svh;min-height:600px;overflow:hidden">
+      <canvas data-bootcanvas style="position:absolute;inset:0;width:100%;height:100%;display:none"></canvas>
+      <div data-bootfallback style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px)">
+        <span style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.18em;color:#6f6152;text-transform:uppercase;text-align:center;padding:22vh 24px 0">assets/images/hero/hero.jpg</span>
+        <img src="{{ cfg.heroImage }}" alt="" onError="{{ hideImg }}" style="animation:tcKenburns 26s ease-in-out infinite alternate;position:relative;width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,.9) 0%,rgba(11,11,11,.5) 45%,rgba(11,11,11,.72) 100%)"></div>
+      <div data-herotext style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(22px,5vw,80px) clamp(64px,9vh,120px);will-change:opacity,transform">
+        <div style="max-width:1440px;margin:0 auto;width:100%">
+          <p data-reveal style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(11px,1.1vw,13px);letter-spacing:.44em;text-transform:uppercase;color:#B08A45;margin:0 0 clamp(18px,3vh,30px)">Moda country desde 2016</p>
+          <h1 data-reveal style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(52px,11vw,148px);line-height:.92;letter-spacing:.01em;margin:0;color:#F4F0E8;text-wrap:balance">{{ cfg.heroTitle }}</h1>
+          <p data-reveal style="font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(20px,2.6vw,34px);line-height:1.3;color:#D8C5A3;margin:clamp(20px,3vh,32px) 0 0;max-width:16em">“{{ cfg.heroTagline }}”</p>
+          <p data-reveal style="font-size:clamp(15px,1.3vw,18px);line-height:1.6;color:rgba(244,240,232,.72);margin:18px 0 0;max-width:34em;font-weight:300">{{ cfg.heroSubtitle }}</p>
+          <div data-reveal style="display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(30px,4.5vh,46px)">
+            <a href="#categorias" style="background:#F4F0E8;color:#0B0B0B;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.22em;text-transform:uppercase;padding:19px 34px;min-height:56px;display:flex;align-items:center" style-hover="background:#B08A45">Conheça a coleção</a>
+            <a href="{{ waHero }}" target="_blank" rel="noopener" style="border:1px solid rgba(244,240,232,.45);color:#F4F0E8;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.22em;text-transform:uppercase;padding:19px 34px;min-height:56px;display:flex;align-items:center" style-hover="background:rgba(244,240,232,.1);border-color:#F4F0E8">Falar no WhatsApp</a>
+          </div>
+        </div>
+      </div>
+      <div data-bootmeter style="position:absolute;right:clamp(22px,5vw,80px);top:50%;transform:translateY(-50%);display:none;flex-direction:column;align-items:center;gap:14px">
+        <span data-bootdeg style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(244,240,232,.55)">0°</span>
+        <span style="display:block;width:1px;height:clamp(80px,16vh,160px);background:rgba(216,197,163,.2)">
+          <span data-bootfill style="display:block;width:1px;height:0%;background:#B08A45"></span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section id="categorias" style="padding:clamp(72px,11vw,140px) clamp(22px,5vw,80px);background:#0B0B0B">
+    <div style="max-width:1440px;margin:0 auto">
+      <div data-reveal style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:clamp(38px,5vw,64px)">
+        <h2 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(34px,5.5vw,72px);line-height:1;margin:0;color:#F4F0E8">Encontre seu estilo</h2>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#B08A45">05 categorias</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(12px,1.4vw,20px)">
+        <a href="#masculino" data-reveal data-cardzoom style="position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#141010;grid-column:span 1">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#6f6152;text-transform:uppercase;text-align:center;padding:18px">assets/images/masculino/categoria.jpg</span>
+            <img src="assets/images/masculino/categoria.jpg" alt="Masculino" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div data-cardveil style="position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,.9) 0%,rgba(11,11,11,.25) 45%,rgba(11,11,11,.05) 100%);transition:background .6s ease"></div>
+          <div style="position:absolute;inset:auto 0 0 0;padding:clamp(22px,2.4vw,34px)">
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(26px,2.6vw,36px);margin:0;color:#F4F0E8">Masculino</h3>
+            <p style="font-size:14px;line-height:1.5;color:rgba(244,240,232,.7);margin:10px 0 0;font-weight:300">Presença, tradição e personalidade.</p>
+          </div>
+        </a>
+
+        <a href="#feminino" data-reveal data-cardzoom style="position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#141010">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#6f6152;text-transform:uppercase;text-align:center;padding:18px">assets/images/feminino/categoria.jpg</span>
+            <img src="assets/images/feminino/categoria.jpg" alt="Feminino" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div data-cardveil style="position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,.9) 0%,rgba(11,11,11,.25) 45%,rgba(11,11,11,.05) 100%);transition:background .6s ease"></div>
+          <div style="position:absolute;inset:auto 0 0 0;padding:clamp(22px,2.4vw,34px)">
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(26px,2.6vw,36px);margin:0;color:#F4F0E8">Feminino</h3>
+            <p style="font-size:14px;line-height:1.5;color:rgba(244,240,232,.7);margin:10px 0 0;font-weight:300">Elegância com atitude country.</p>
+          </div>
+        </a>
+
+        <a href="#botas" data-reveal data-cardzoom style="position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#141010">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#6f6152;text-transform:uppercase;text-align:center;padding:18px">assets/images/botas/categoria.jpg</span>
+            <img src="assets/images/botas/categoria.jpg" alt="Botas" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div data-cardveil style="position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,.9) 0%,rgba(11,11,11,.25) 45%,rgba(11,11,11,.05) 100%);transition:background .6s ease"></div>
+          <div style="position:absolute;inset:auto 0 0 0;padding:clamp(22px,2.4vw,34px)">
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(26px,2.6vw,36px);margin:0;color:#F4F0E8">Botas</h3>
+            <p style="font-size:14px;line-height:1.5;color:rgba(244,240,232,.7);margin:10px 0 0;font-weight:300">Do clássico ao autêntico western.</p>
+          </div>
+        </a>
+
+        <a href="#infantil" data-reveal data-cardzoom style="position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#141010">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#6f6152;text-transform:uppercase;text-align:center;padding:18px">assets/images/infantil/categoria.jpg</span>
+            <img src="assets/images/infantil/categoria.jpg" alt="Infantil" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div data-cardveil style="position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,.9) 0%,rgba(11,11,11,.25) 45%,rgba(11,11,11,.05) 100%);transition:background .6s ease"></div>
+          <div style="position:absolute;inset:auto 0 0 0;padding:clamp(22px,2.4vw,34px)">
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(26px,2.6vw,36px);margin:0;color:#F4F0E8">Infantil</h3>
+            <p style="font-size:14px;line-height:1.5;color:rgba(244,240,232,.7);margin:10px 0 0;font-weight:300">Estilo country desde cedo.</p>
+          </div>
+        </a>
+
+        <a href="#acessorios" data-reveal data-cardzoom style="position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#141010">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:#6f6152;text-transform:uppercase;text-align:center;padding:18px">assets/images/acessorios/categoria.jpg</span>
+            <img src="assets/images/acessorios/categoria.jpg" alt="Acessórios" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div data-cardveil style="position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,.9) 0%,rgba(11,11,11,.25) 45%,rgba(11,11,11,.05) 100%);transition:background .6s ease"></div>
+          <div style="position:absolute;inset:auto 0 0 0;padding:clamp(22px,2.4vw,34px)">
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(26px,2.6vw,36px);margin:0;color:#F4F0E8">Acessórios</h3>
+            <p style="font-size:14px;line-height:1.5;color:rgba(244,240,232,.7);margin:10px 0 0;font-weight:300">Os detalhes fazem toda diferença.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="destaques" style="padding:clamp(72px,11vw,140px) clamp(22px,5vw,80px);background:#100D0B;border-top:1px solid rgba(216,197,163,.08)">
+    <div style="max-width:1440px;margin:0 auto">
+      <div data-reveal style="margin-bottom:clamp(38px,5vw,64px)">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:#B08A45;margin:0 0 16px">Seleção da loja</p>
+        <h2 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(34px,5.5vw,72px);line-height:1;margin:0;color:#F4F0E8">Destaques Top Country</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(46%,250px),1fr));gap:clamp(14px,2vw,32px)">
+        <sc-for list="{{ produtos }}" as="p" hint-placeholder-count="8">
+          <article data-reveal style="display:flex;flex-direction:column">
+            <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#141010;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px)">
+              <img src="{{ p.imagem }}" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+            <p style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#B08A45;margin:18px 0 0">{{ p.categoria }}</p>
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(19px,1.7vw,24px);line-height:1.25;margin:9px 0 0;color:#F4F0E8">{{ p.nome }}</h3>
+            <p style="font-size:13px;color:rgba(244,240,232,.5);margin:8px 0 18px;font-weight:300">{{ p.precoLabel }}</p>
+            <a href="{{ p.waLink }}" target="_blank" rel="noopener" style="margin-top:auto;display:flex;align-items:center;justify-content:center;min-height:48px;border:1px solid rgba(216,197,163,.3);color:#D8C5A3;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;padding:14px" style-hover="background:#B08A45;border-color:#B08A45;color:#0B0B0B">Tenho interesse</a>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="masculino" style="background:#0B0B0B;padding:clamp(72px,11vw,140px) clamp(22px,5vw,80px)">
+    <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(30px,5vw,72px);align-items:center">
+      <div data-reveal>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:#B08A45;margin:0 0 20px">Masculino</p>
+        <h2 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(32px,4.6vw,60px);line-height:1.06;margin:0;color:#F4F0E8;text-wrap:pretty">Para quem nasceu para marcar presença.</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;margin-top:clamp(30px,4vw,46px);max-width:420px;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,240,232,.78)">
+          <span style="padding-bottom:10px;border-bottom:1px solid rgba(216,197,163,.14)">Camisas</span>
+          <span style="padding-bottom:10px;border-bottom:1px solid rgba(216,197,163,.14)">Calças</span>
+          <span style="padding-bottom:10px;border-bottom:1px solid rgba(216,197,163,.14)">Botas</span>
+          <span style="padding-bottom:10px;border-bottom:1px solid rgba(216,197,163,.14)">Chapéus</span>
+          <span style="padding-bottom:10px;border-bottom:1px solid rgba(216,197,163,.14)">Cintos</span>
+          <span style="padding-bottom:10px;border-bottom:1px solid rgba(216,197,163,.14)">Acessórios</span>
+        </div>
+        <a href="{{ waShop }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:54px;margin-top:clamp(30px,4vw,44px);border:1px solid #B08A45;color:#B08A45;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;padding:17px 30px" style-hover="background:#B08A45;color:#0B0B0B">Ver peças masculinas</a>
+      </div>
+      <div data-reveal style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:12px">
+        <div data-cardzoom style="position:relative;grid-column:span 2;aspect-ratio:16/10;overflow:hidden;background:#141010">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:16px">assets/images/masculino/editorial-01.jpg</span>
+            <img src="assets/images/masculino/editorial-01.jpg" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </div>
+        <div data-cardzoom style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#141010">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:16px">assets/images/masculino/editorial-02.jpg</span>
+            <img src="assets/images/masculino/editorial-02.jpg" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </div>
+        <div data-cardzoom style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#141010">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:16px">assets/images/masculino/editorial-03.jpg</span>
+            <img src="assets/images/masculino/editorial-03.jpg" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="feminino" style="background:#F4F0E8;color:#0B0B0B;padding:clamp(72px,11vw,140px) clamp(22px,5vw,80px)">
+    <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(30px,5vw,72px);align-items:center">
+      <div data-reveal style="display:grid;grid-template-columns:1fr 1fr;gap:12px;order:2">
+        <div data-cardzoom style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#e5dfd2;margin-top:clamp(0px,4vw,48px)">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#e8e2d5 0 12px,#ded7c8 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#8d8271;text-transform:uppercase;text-align:center;padding:16px">assets/images/feminino/editorial-01.jpg</span>
+            <img src="assets/images/feminino/editorial-01.jpg" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </div>
+        <div data-cardzoom style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#e5dfd2">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#e8e2d5 0 12px,#ded7c8 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#8d8271;text-transform:uppercase;text-align:center;padding:16px">assets/images/feminino/editorial-02.jpg</span>
+            <img src="assets/images/feminino/editorial-02.jpg" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </div>
+      </div>
+      <div data-reveal style="order:1">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:#8A5A35;margin:0 0 20px">Feminino</p>
+        <h2 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(32px,4.6vw,60px);line-height:1.06;margin:0;color:#0B0B0B">Country com personalidade.</h2>
+        <p style="font-size:clamp(15px,1.2vw,17px);line-height:1.7;color:rgba(11,11,11,.66);margin:24px 0 0;max-width:32em;font-weight:300">Chapéus, botas, jeans, camisas, vestidos e acessórios escolhidos peça por peça — para compor um look que fala antes de você.</p>
+        <a href="{{ waShop }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:54px;margin-top:clamp(28px,4vw,42px);background:#0B0B0B;color:#F4F0E8;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;padding:17px 30px" style-hover="background:#5A3825">Ver peças femininas</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="botas" style="position:relative;min-height:min(92svh,820px);display:flex;align-items:center;overflow:hidden;background:#0B0B0B">
+    <div data-parallax="0.14" style="position:absolute;inset:-12% 0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);will-change:transform">
+      <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.16em;color:#6f6152;text-transform:uppercase;text-align:center;padding:24px">assets/images/botas/hero-botas.jpg</span>
+      <img src="assets/images/botas/hero-botas.jpg" alt="" onError="{{ hideImg }}" style="animation:tcKenburns 30s ease-in-out infinite alternate;position:relative;width:100%;height:100%;object-fit:cover;display:block">
+    </div>
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,11,.92) 0%,rgba(11,11,11,.72) 45%,rgba(11,11,11,.35) 100%)"></div>
+    <div style="position:relative;max-width:1440px;margin:0 auto;width:100%;padding:clamp(80px,12vw,140px) clamp(22px,5vw,80px)">
+      <div data-reveal style="max-width:22em">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:#B08A45;margin:0 0 20px">Botas</p>
+        <h2 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(36px,6vw,80px);line-height:1.02;margin:0;color:#F4F0E8">O clássico que nunca sai de moda.</h2>
+        <p style="font-size:clamp(15px,1.2vw,18px);line-height:1.7;color:rgba(244,240,232,.7);margin:24px 0 0;font-weight:300">Couro legítimo, acabamento artesanal e modelos do western tradicional ao contemporâneo.</p>
+        <a href="{{ waShop }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:56px;margin-top:clamp(30px,4vw,46px);background:#B08A45;color:#0B0B0B;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.24em;text-transform:uppercase;padding:19px 36px" style-hover="background:#F4F0E8">Ver botas</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" style="background:#100D0B;padding:clamp(72px,11vw,140px) clamp(22px,5vw,80px);border-top:1px solid rgba(216,197,163,.08)">
+    <div style="max-width:1100px;margin:0 auto;text-align:center">
+      <p data-reveal style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:#B08A45;margin:0 0 22px">A experiência Top Country</p>
+      <h2 data-reveal style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(32px,5.4vw,68px);line-height:1.05;margin:0;color:#F4F0E8">Desde 2016, vestindo histórias.</h2>
+      <p data-reveal style="font-size:clamp(16px,1.3vw,19px);line-height:1.75;color:rgba(244,240,232,.68);margin:clamp(24px,3vw,34px) auto 0;max-width:44em;font-weight:300">Mais do que uma loja, a Top Country faz parte da história de quem escolhe viver com autenticidade. Desde 2016, reunimos moda, tradição e personalidade para oferecer peças que representam o verdadeiro estilo country.</p>
+
+      <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(45%,190px),1fr));gap:clamp(28px,3vw,40px);margin-top:clamp(48px,7vw,88px);text-align:left">
+        <div style="border-top:1px solid rgba(216,197,163,.18);padding-top:22px">
+          <p data-count="2016" data-plain="1" style="font-family:'Bodoni Moda',serif;font-size:clamp(34px,4vw,52px);line-height:1;margin:0;color:#D8C5A3">2016</p>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,240,232,.5);margin:14px 0 0">Desde então fazendo história</p>
+        </div>
+        <div style="border-top:1px solid rgba(216,197,163,.18);padding-top:22px">
+          <p data-count="9" data-prefix="+" data-suffix=" anos" style="font-family:'Bodoni Moda',serif;font-size:clamp(34px,4vw,52px);line-height:1;margin:0;color:#D8C5A3">+9 anos</p>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,240,232,.5);margin:14px 0 0">De experiência</p>
+        </div>
+        <div style="border-top:1px solid rgba(216,197,163,.18);padding-top:22px">
+          <p style="font-family:'Bodoni Moda',serif;font-size:clamp(34px,4vw,52px);line-height:1;margin:0;color:#D8C5A3">5,0 <span style="font-size:.55em;color:#B08A45">★</span></p>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,240,232,.5);margin:14px 0 0">Avaliação no Google</p>
+        </div>
+        <div style="border-top:1px solid rgba(216,197,163,.18);padding-top:22px">
+          <p style="font-family:'Bodoni Moda',serif;font-size:clamp(24px,2.6vw,34px);line-height:1.1;margin:0;color:#D8C5A3">Capelinha – MG</p>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,240,232,.5);margin:14px 0 0">Nossa casa</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="infantil" style="background:#0B0B0B;padding:clamp(72px,11vw,140px) clamp(22px,5vw,80px)">
+    <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(24px,3vw,48px);align-items:end">
+      <div data-reveal>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:#B08A45;margin:0 0 20px">Infantil</p>
+        <h2 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(30px,4.2vw,54px);line-height:1.06;margin:0;color:#F4F0E8">Estilo country desde cedo.</h2>
+        <p style="font-size:16px;line-height:1.7;color:rgba(244,240,232,.65);margin:22px 0 0;max-width:26em;font-weight:300">Chapéus, botinhas e camisas em tamanhos pequenos — com o mesmo cuidado das peças adultas.</p>
+      </div>
+      <div data-reveal data-cardzoom style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#141010">
+        <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+          <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:16px">assets/images/infantil/editorial-01.jpg</span>
+          <img src="assets/images/infantil/editorial-01.jpg" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+      </div>
+      <div data-reveal data-cardzoom style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#141010">
+        <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+          <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:16px">assets/images/acessorios/editorial-01.jpg</span>
+          <img src="assets/images/acessorios/editorial-01.jpg" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="acessorios" style="background:#0B0B0B;padding:0 clamp(22px,5vw,80px) clamp(72px,11vw,140px)">
+    <div style="max-width:1440px;margin:0 auto;border-top:1px solid rgba(216,197,163,.1);padding-top:clamp(48px,6vw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(45%,220px),1fr));gap:clamp(20px,2.4vw,32px)">
+      <div data-reveal style="grid-column:1/-1;margin-bottom:8px">
+        <h2 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(28px,3.6vw,46px);line-height:1;margin:0;color:#F4F0E8">Acessórios</h2>
+        <p style="font-size:15px;color:rgba(244,240,232,.55);margin:14px 0 0;font-weight:300">Chapéus, cintos, fivelas e carteiras — os detalhes fazem toda diferença.</p>
+      </div>
+      <div data-reveal data-cardzoom style="position:relative;aspect-ratio:1;overflow:hidden;background:#141010">
+        <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+          <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:14px">assets/images/acessorios/chapeus.jpg</span>
+          <img src="assets/images/acessorios/chapeus.jpg" alt="Chapéus" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <span style="position:absolute;left:0;bottom:0;padding:18px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#F4F0E8;background:linear-gradient(to top,rgba(11,11,11,.85),transparent);width:100%">Chapéus</span>
+      </div>
+      <div data-reveal data-cardzoom style="position:relative;aspect-ratio:1;overflow:hidden;background:#141010">
+        <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+          <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:14px">assets/images/acessorios/cintos.jpg</span>
+          <img src="assets/images/acessorios/cintos.jpg" alt="Cintos" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <span style="position:absolute;left:0;bottom:0;padding:18px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#F4F0E8;background:linear-gradient(to top,rgba(11,11,11,.85),transparent);width:100%">Cintos</span>
+      </div>
+      <div data-reveal data-cardzoom style="position:relative;aspect-ratio:1;overflow:hidden;background:#141010">
+        <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+          <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:14px">assets/images/acessorios/calcados.jpg</span>
+          <img src="assets/images/acessorios/calcados.jpg" alt="Calçados" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <span style="position:absolute;left:0;bottom:0;padding:18px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#F4F0E8;background:linear-gradient(to top,rgba(11,11,11,.85),transparent);width:100%">Calçados</span>
+      </div>
+      <div data-reveal data-cardzoom style="position:relative;aspect-ratio:1;overflow:hidden;background:#141010">
+        <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+          <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:14px">assets/images/acessorios/ocasioes.jpg</span>
+          <img src="assets/images/acessorios/ocasioes.jpg" alt="Ocasiões especiais" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <span style="position:absolute;left:0;bottom:0;padding:18px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#F4F0E8;background:linear-gradient(to top,rgba(11,11,11,.85),transparent);width:100%">Ocasiões especiais</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="loja" style="background:#5A3825;padding:clamp(72px,11vw,140px) clamp(22px,5vw,80px)">
+    <div style="max-width:1440px;margin:0 auto">
+      <div data-reveal style="max-width:34em">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:#D8C5A3;margin:0 0 20px">A loja física</p>
+        <h2 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(32px,5vw,64px);line-height:1.04;margin:0;color:#F4F0E8">Venha conhecer a Top Country</h2>
+        <p style="font-size:clamp(15px,1.2vw,18px);line-height:1.7;color:rgba(244,240,232,.78);margin:22px 0 0;font-weight:300">Uma experiência completa para você encontrar seu próximo look.</p>
+      </div>
+
+      <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;margin-top:clamp(38px,5vw,64px)">
+        <div data-cardzoom style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#4a2e1e">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#4e3121 0 12px,#573726 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#c0ae92;text-transform:uppercase;text-align:center;padding:14px">assets/images/loja/fachada.jpg</span>
+            <img src="assets/images/loja/fachada.jpg" alt="Fachada da loja" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </div>
+        <div style="display:grid;gap:12px">
+          <div data-cardzoom style="position:relative;aspect-ratio:16/9;overflow:hidden;background:#4a2e1e">
+            <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#4e3121 0 12px,#573726 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+              <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#c0ae92;text-transform:uppercase;text-align:center;padding:14px">assets/images/loja/interior-01.jpg</span>
+              <img src="assets/images/loja/interior-01.jpg" alt="Interior da loja" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+          <div data-cardzoom style="position:relative;aspect-ratio:16/9;overflow:hidden;background:#4a2e1e">
+            <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#4e3121 0 12px,#573726 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+              <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#c0ae92;text-transform:uppercase;text-align:center;padding:14px">assets/images/loja/interior-02.jpg</span>
+              <img src="assets/images/loja/interior-02.jpg" alt="Interior da loja" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;justify-content:space-between;gap:20px;background:#0B0B0B;padding:clamp(26px,3vw,40px)">
+          <div>
+            <p style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#B08A45;margin:0 0 16px">Onde estamos</p>
+            <p style="font-family:'Bodoni Moda',serif;font-size:clamp(20px,1.9vw,26px);line-height:1.4;color:#F4F0E8;margin:0">📍 R. Ozanan Pimenta, 84 – Centro, Capelinha – MG</p>
+            <p style="font-size:15px;line-height:1.6;color:rgba(244,240,232,.55);margin:18px 0 0;font-weight:300">Atendimento também por WhatsApp: (33) 99179-1610</p>
+          </div>
+          <a href="{{ mapsUrl }}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;min-height:56px;border:1px solid #B08A45;color:#B08A45;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.24em;text-transform:uppercase;padding:18px" style-hover="background:#B08A45;color:#0B0B0B">Como chegar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#0B0B0B;padding:clamp(72px,11vw,140px) clamp(22px,5vw,80px)">
+    <div style="max-width:1440px;margin:0 auto">
+      <div data-reveal style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:clamp(30px,4vw,52px)">
+        <div>
+          <h2 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(30px,4.6vw,60px);line-height:1;margin:0;color:#F4F0E8">Siga a nossa história</h2>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.28em;text-transform:uppercase;color:#B08A45;margin:16px 0 0">@topcountry14</p>
+        </div>
+        <a href="https://www.instagram.com/topcountry14/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:52px;border:1px solid rgba(216,197,163,.3);color:#D8C5A3;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;padding:16px 28px" style-hover="background:#F4F0E8;color:#0B0B0B;border-color:#F4F0E8">Seguir no Instagram</a>
+      </div>
+      <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(45%,200px),1fr));gap:clamp(8px,1vw,14px)">
+        <a href="https://www.instagram.com/topcountry14/" target="_blank" rel="noopener" data-cardzoom style="position:relative;display:block;aspect-ratio:1;overflow:hidden;background:#141010">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:14px">insta-01 · look feminino</span>
+            <img src="assets/images/feminino/insta-01.jpg" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </a>
+        <a href="https://www.instagram.com/topcountry14/" target="_blank" rel="noopener" data-cardzoom style="position:relative;display:block;aspect-ratio:1;overflow:hidden;background:#141010">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:14px">insta-02 · look masculino</span>
+            <img src="assets/images/masculino/insta-02.jpg" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </a>
+        <a href="https://www.instagram.com/topcountry14/" target="_blank" rel="noopener" data-cardzoom style="position:relative;display:block;aspect-ratio:1;overflow:hidden;background:#141010">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:14px">insta-03 · botas</span>
+            <img src="assets/images/botas/insta-03.jpg" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </a>
+        <a href="https://www.instagram.com/topcountry14/" target="_blank" rel="noopener" data-cardzoom style="position:relative;display:block;aspect-ratio:1;overflow:hidden;background:#141010">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:14px">insta-04 · chapéus</span>
+            <img src="assets/images/acessorios/insta-04.jpg" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </a>
+        <a href="https://www.instagram.com/topcountry14/" target="_blank" rel="noopener" data-cardzoom style="position:relative;display:block;aspect-ratio:1;overflow:hidden;background:#141010">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:14px">insta-05 · loja</span>
+            <img src="assets/images/loja/insta-05.jpg" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </a>
+        <a href="https://www.instagram.com/topcountry14/" target="_blank" rel="noopener" data-cardzoom style="position:relative;display:block;aspect-ratio:1;overflow:hidden;background:#141010">
+          <div data-zoom style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);transition:transform 1.1s cubic-bezier(.16,1,.3,1)">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:#6f6152;text-transform:uppercase;text-align:center;padding:14px">insta-06 · infantil</span>
+            <img src="assets/images/infantil/insta-06.jpg" alt="" onError="{{ hideImg }}" style="position:relative;width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#100D0B;padding:clamp(72px,11vw,130px) clamp(22px,5vw,80px);border-top:1px solid rgba(216,197,163,.08)">
+    <div style="max-width:1000px;margin:0 auto;text-align:center">
+      <h2 data-reveal style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(30px,4.6vw,58px);line-height:1.05;margin:0;color:#F4F0E8">Quem conhece, recomenda.</h2>
+      <p data-reveal style="font-size:22px;letter-spacing:.3em;color:#B08A45;margin:26px 0 8px">★★★★★</p>
+      <p data-reveal style="font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,240,232,.55);margin:0">5,0 no Google</p>
+      <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(16px,2vw,28px);margin-top:clamp(40px,5vw,68px);text-align:left">
+        <blockquote style="margin:0;border-left:1px solid rgba(176,138,69,.5);padding:6px 0 6px 26px;font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(18px,1.7vw,23px);line-height:1.5;color:#D8C5A3">“Produtos excelentes, super indico. Atendimento muito bom.”</blockquote>
+        <blockquote style="margin:0;border-left:1px solid rgba(176,138,69,.5);padding:6px 0 6px 26px;font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(18px,1.7vw,23px);line-height:1.5;color:#D8C5A3">“Ótima loja.”</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" style="position:relative;min-height:min(80svh,720px);display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0B0B0B">
+    <div data-parallax="0.12" style="position:absolute;inset:-12% 0;background-image:repeating-linear-gradient(45deg,#17120e 0 12px,#1f1813 12px 24px);will-change:transform">
+      <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.16em;color:#6f6152;text-transform:uppercase;text-align:center;padding:24px">assets/images/hero/cta-final.jpg</span>
+      <img src="assets/images/hero/cta-final.jpg" alt="" onError="{{ hideImg }}" style="animation:tcKenburns 28s ease-in-out infinite alternate;position:relative;width:100%;height:100%;object-fit:cover;display:block">
+    </div>
+    <div style="position:absolute;inset:0;background:rgba(11,11,11,.72)"></div>
+    <div data-reveal style="position:relative;text-align:center;padding:clamp(80px,12vw,140px) clamp(22px,5vw,80px);max-width:1000px">
+      <h2 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(36px,6.6vw,92px);line-height:1.02;margin:0;color:#F4F0E8;text-wrap:balance">Seu próximo look começa aqui.</h2>
+      <p style="font-size:clamp(16px,1.3vw,19px);line-height:1.7;color:rgba(244,240,232,.72);margin:26px auto 0;max-width:36em;font-weight:300">Descubra a Top Country e encontre peças que combinam com a sua essência.</p>
+      <a href="{{ waHero }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:60px;margin-top:clamp(32px,4vw,48px);background:#B08A45;color:#0B0B0B;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.24em;text-transform:uppercase;padding:21px 40px" style-hover="background:#F4F0E8">Falar com a Top Country</a>
+    </div>
+  </section>
+
+  <footer style="background:#0B0B0B;border-top:1px solid rgba(216,197,163,.12);padding:clamp(56px,7vw,90px) clamp(22px,5vw,80px) 32px">
+    <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(34px,4vw,56px)">
+      <div>
+        <p style="font-family:'Bodoni Moda',serif;font-size:clamp(22px,2.2vw,30px);letter-spacing:.1em;margin:0;color:#F4F0E8">TOP COUNTRY</p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:#B08A45;margin:12px 0 0">Capelinha — MG · Desde 2016</p>
+      </div>
+      <div>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,240,232,.45);margin:0 0 18px">Navegação</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;font-size:15px;font-weight:300">
+          <a href="#inicio" style="color:rgba(244,240,232,.8)">Início</a>
+          <a href="#masculino" style="color:rgba(244,240,232,.8)">Masculino</a>
+          <a href="#feminino" style="color:rgba(244,240,232,.8)">Feminino</a>
+          <a href="#infantil" style="color:rgba(244,240,232,.8)">Infantil</a>
+          <a href="#botas" style="color:rgba(244,240,232,.8)">Botas</a>
+          <a href="#acessorios" style="color:rgba(244,240,232,.8)">Acessórios</a>
+          <a href="#sobre" style="color:rgba(244,240,232,.8)">Sobre nós</a>
+          <a href="#contato" style="color:rgba(244,240,232,.8)">Contato</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,240,232,.45);margin:0 0 18px">Contato</p>
+        <div style="display:flex;flex-direction:column;gap:12px;font-size:15px;font-weight:300;color:rgba(244,240,232,.8)">
+          <span>📍 R. Ozanan Pimenta, 84 – Centro, Capelinha – MG</span>
+          <a href="tel:+5533991791610" style="color:rgba(244,240,232,.8)">📱 (33) 99179-1610</a>
+          <a href="https://www.instagram.com/topcountry14/" target="_blank" rel="noopener" style="color:#D8C5A3">@topcountry14</a>
+          <a href="{{ waShop }}" target="_blank" rel="noopener" style="color:#D8C5A3">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <p style="max-width:1440px;margin:clamp(44px,6vw,72px) auto 0;padding-top:24px;border-top:1px solid rgba(216,197,163,.1);font-size:13px;color:rgba(244,240,232,.4);font-weight:300;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between"><span>© 2026 Top Country Capelinha. Todos os direitos reservados.</span><a href="Admin.dc.html" style="color:rgba(244,240,232,.3);font-size:12px">Painel administrativo</a></p>
+  </footer>
+
+  <a href="{{ waHero }}" target="_blank" rel="noopener" aria-label="WhatsApp" style="position:fixed;right:clamp(16px,2.5vw,28px);bottom:clamp(16px,2.5vw,28px);z-index:60;display:flex;align-items:center;justify-content:center;width:58px;height:58px;border-radius:50%;background:#B08A45;color:#0B0B0B;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 10px 30px rgba(0,0,0,.5)" style-hover="background:#F4F0E8">Chat</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;5533991791610&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contato&quot;},&quot;heroOverlay&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.62,&quot;min&quot;:0.2,&quot;max&quot;:0.9,&quot;step&quot;:0.02,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;framePath&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/frames/&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero 360°&quot;},&quot;frameCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:259,&quot;min&quot;:2,&quot;max&quot;:600,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero 360°&quot;},&quot;bootScrollLength&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:340,&quot;min&quot;:150,&quot;max&quot;:600,&quot;step&quot;:10,&quot;unit&quot;:&quot;svh&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero 360°&quot;}}">
+class Component extends DCLogic {
+  state = { scrolled: false, menu: false, cfg: null, produtos: [] };
+
+  async componentDidMount0() {
+    this.data = await import('./tc-data.js');
+    const [cfg, produtos] = await Promise.all([this.data.getConfig(), this.data.listProducts()]);
+    this.setState({ cfg, produtos });
+  }
+
+  get wa() { return (this.state.cfg && this.state.cfg.whatsapp) || this.props.whatsapp || '5533991791610'; }
+
+  link(msg) {
+    return 'https://wa.me/' + this.wa + (msg ? '?text=' + encodeURIComponent(msg) : '');
+  }
+
+  componentDidMount() {
+    this.componentDidMount0();
+    this.seen = new WeakSet();
+    this.onScroll = () => {
+      const y = window.scrollY || 0;
+      if ((y > 60) !== this.state.scrolled) this.setState({ scrolled: y > 60 });
+      document.querySelectorAll('[data-parallax]').forEach(el => {
+        const r = el.parentElement.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > window.innerHeight + 200) return;
+        const k = parseFloat(el.getAttribute('data-parallax')) || 0.12;
+        const off = (r.top + r.height / 2 - window.innerHeight / 2) * -k;
+        el.style.transform = 'translate3d(0,' + off.toFixed(1) + 'px,0)';
+      });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll);
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+        if (e.target.hasAttribute('data-count')) this.count(e.target);
+        this.io.unobserve(e.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    this.scan = () => {
+      document.querySelectorAll('[data-reveal],[data-count]').forEach(el => {
+        if (this.seen.has(el)) return;
+        this.seen.add(el);
+        if (reduce) { if (el.hasAttribute('data-count')) this.count(el); return; }
+        if (el.hasAttribute('data-reveal')) {
+          const sibs = el.parentElement ? Array.from(el.parentElement.children).filter(c => c.hasAttribute('data-reveal')) : [];
+          const delay = sibs.length > 1 ? Math.min(sibs.indexOf(el), 7) * 0.09 : 0;
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(26px)';
+          el.style.transition = 'opacity 1s cubic-bezier(.16,1,.3,1) ' + delay + 's, transform 1s cubic-bezier(.16,1,.3,1) ' + delay + 's';
+        }
+        this.io.observe(el);
+      });
+      document.querySelectorAll('[data-cardzoom]').forEach(el => {
+        if (el.__z) return; el.__z = 1;
+        const z = el.querySelector('[data-zoom]');
+        const v = el.querySelector('[data-cardveil]');
+        el.addEventListener('mouseenter', () => {
+          if (z) z.style.transform = 'scale(1.055)';
+          if (v) v.style.background = 'linear-gradient(to top,rgba(11,11,11,.95) 0%,rgba(11,11,11,.55) 55%,rgba(11,11,11,.35) 100%)';
+        });
+        el.addEventListener('mouseleave', () => {
+          if (z) z.style.transform = 'none';
+          if (v) v.style.background = 'linear-gradient(to top,rgba(11,11,11,.9) 0%,rgba(11,11,11,.25) 45%,rgba(11,11,11,.05) 100%)';
+        });
+      });
+      this.applyBreakpoint();
+    };
+    this.scan();
+    this.onScroll();
+    this.bp = () => this.applyBreakpoint();
+    window.addEventListener('resize', this.bp);
+    this.initBoot();
+    this.timer = setInterval(this.scan, 400);
+    setTimeout(() => clearInterval(this.timer), 12000);
+  }
+
+  initBoot() {
+    const canvas = document.querySelector('[data-bootcanvas]');
+    const stage = document.querySelector('[data-bootstage]');
+    if (!canvas || !stage) return;
+    const total = Math.max(2, parseInt(this.props.frameCount ?? 259, 10));
+    const dir = this.props.framePath || 'assets/frames/';
+    const stageVh = this.props.bootScrollLength ?? 340;
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const imgs = new Array(total + 1), done = new Array(total + 1).fill(false), busy = new Array(total + 1).fill(false);
+    const url = i => dir + 'ezgif-frame-' + String(i).padStart(3, '0') + '.jpg';
+    const fallback = document.querySelector('[data-bootfallback]');
+    const meter = document.querySelector('[data-bootmeter]');
+    const fill = document.querySelector('[data-bootfill]');
+    const deg = document.querySelector('[data-bootdeg]');
+    const txt = document.querySelector('[data-herotext]');
+
+    let live = false, cur = 1, lastI = -1, lastImg = null, raf = 0, t0 = performance.now();
+    const q = []; let active = 0;
+
+    const best = i => {
+      if (done[i]) return imgs[i];
+      for (let o = 1; o < total; o++) {
+        if (i - o >= 1 && done[i - o]) return imgs[i - o];
+        if (i + o <= total && done[i + o]) return imgs[i + o];
+      }
+      return null;
+    };
+    const paint = i => {
+      const img = best(i);
+      if (!img || !img.naturalWidth) return;
+      if (i === lastI && img === lastImg) return;
+      const cw = canvas.width, ch = canvas.height;
+      // cover com um leve recuo
+      const s = Math.max(cw / img.naturalWidth, ch / img.naturalHeight) * 0.94;
+      const dw = Math.round(img.naturalWidth * s), dh = Math.round(img.naturalHeight * s);
+      ctx.fillStyle = '#0B0B0B';
+      ctx.fillRect(0, 0, cw, ch);
+      const dx = Math.round((cw - dw) / 2), dy = Math.round((ch - dh) / 2);
+      ctx.drawImage(img, dx, dy, dw, dh);
+      // faixas laterais/superiores na tonalidade do couro do frame
+      if (dx > 0 || dy > 0) {
+        try {
+          const sx = Math.min(cw - 1, dx + 2), sy = Math.round(ch * 0.25);
+          const px = ctx.getImageData(sx, Math.max(0, Math.min(ch - 1, sy)), 1, 1).data;
+          ctx.fillStyle = 'rgb(' + px[0] + ',' + px[1] + ',' + px[2] + ')';
+        } catch (e) { ctx.fillStyle = '#3a2418'; }
+        if (dx > 0) { ctx.fillRect(0, 0, dx, ch); ctx.fillRect(dx + dw, 0, cw - dx - dw, ch); }
+        if (dy > 0) { ctx.fillRect(0, 0, cw, dy); ctx.fillRect(0, dy + dh, cw, ch - dy - dh); }
+      }
+      lastI = i; lastImg = img;
+
+    };
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const r = canvas.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      canvas.width = Math.round(r.width * dpr);
+      canvas.height = Math.round(r.height * dpr);
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      lastI = -1; lastImg = null;
+      paint(Math.min(Math.max(Math.round(cur), 1), total));
+    };
+    const pump = () => {
+      while (active < 6 && q.length) {
+        const i = q.shift();
+        if (done[i] || busy[i]) continue;
+        active++; busy[i] = true;
+        const img = new Image();
+        img.src = url(i);
+        const ok = () => {
+          imgs[i] = img; done[i] = true; busy[i] = false; active--;
+          if (!live) {
+            live = true;
+            canvas.style.display = 'block';
+            if (fallback) fallback.style.display = 'none';
+            if (meter) meter.style.display = 'flex';
+            stage.style.height = stageVh + 'svh';
+            resize();
+          }
+          const t = Math.min(Math.max(Math.round(cur), 1), total);
+          if (Math.abs(t - i) <= 2) paint(t);
+          pump();
+        };
+        const bad = () => { busy[i] = false; active--; pump(); };
+        if ('decode' in img) img.decode().then(ok).catch(() => { if (img.complete && img.naturalWidth) ok(); else { img.onload = ok; img.onerror = bad; } });
+        else { img.onload = ok; img.onerror = bad; }
+      }
+    };
+    const push = (i, urgent) => {
+      if (i < 1 || i > total || done[i] || busy[i]) return;
+      const at = q.indexOf(i);
+      if (urgent) { if (at !== -1) q.splice(at, 1); q.unshift(i); }
+      else if (at === -1) q.push(i);
+      pump();
+    };
+    const near = f => { const c = Math.round(f); push(c, true); for (let r = 1; r <= 8; r++) { push(c + r, true); push(c - r, true); } };
+
+    push(1, true);
+    setTimeout(() => {
+      if (!live) return;
+      for (let i = 1; i <= total; i += 8) push(i, false);
+      push(total, false);
+      for (let i = 5; i <= total; i += 8) push(i, false);
+      for (let i = 3; i <= total; i += 4) push(i, false);
+      for (let i = 2; i <= total; i += 2) push(i, false);
+    }, 400);
+
+    const progress = () => {
+      const r = stage.getBoundingClientRect();
+      const span = Math.max(stage.offsetHeight - window.innerHeight, 1);
+      return Math.min(Math.max(-r.top / span, 0), 1);
+    };
+    const loop = now => {
+      const dt = Math.min((now - t0) / 1000, 0.1); t0 = now;
+      if (live) {
+        const p = progress();
+        const target = 1 + p * (total - 1);
+        cur += (target - cur) * (1 - Math.exp(-12 * dt));
+        paint(Math.min(Math.max(Math.round(cur), 1), total));
+        if (fill) fill.style.height = (p * 100).toFixed(1) + '%';
+        if (deg) deg.textContent = Math.round(p * 360) + '°';
+        if (txt) {
+          const f = Math.min(Math.max((p - 0.55) / 0.32, 0), 1);
+          txt.style.opacity = String(1 - f);
+          txt.style.transform = 'translateY(' + (-f * 48).toFixed(1) + 'px)';
+        }
+      }
+      raf = requestAnimationFrame(loop);
+    };
+    this.onBootScroll = () => { if (live) near(1 + progress() * (total - 1)); };
+    window.addEventListener('scroll', this.onBootScroll, { passive: true });
+    window.addEventListener('resize', resize);
+    this.stopBoot = () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); };
+    resize();
+    raf = requestAnimationFrame(loop);
+  }
+
+  applyBreakpoint() {
+    const wide = window.innerWidth >= 1080;
+    document.querySelectorAll('[data-desknav]').forEach(n => n.style.display = wide ? 'flex' : 'none');
+    document.querySelectorAll('[data-deskcta]').forEach(n => n.style.display = wide ? 'flex' : 'none');
+    document.querySelectorAll('[data-mobbtn]').forEach(n => n.style.display = wide ? 'none' : 'flex');
+  }
+
+  count(el) {
+    const target = parseFloat(el.getAttribute('data-count'));
+    if (!isFinite(target)) return;
+    const pre = el.getAttribute('data-prefix') || '';
+    const suf = el.getAttribute('data-suffix') || '';
+    const plain = el.getAttribute('data-plain');
+    const dur = 1400, t0 = performance.now();
+    const step = now => {
+      const p = Math.min(1, (now - t0) / dur);
+      const e = 1 - Math.pow(1 - p, 3);
+      const val = Math.round(target * e);
+      el.textContent = pre + (plain ? String(val) : val.toLocaleString('pt-BR')) + suf;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onScroll);
+    window.removeEventListener('resize', this.bp);
+    if (this.io) this.io.disconnect();
+    if (this.stopBoot) this.stopBoot();
+    if (this.onBootScroll) window.removeEventListener('scroll', this.onBootScroll);
+    clearInterval(this.timer);
+  }
+
+  renderVals() {
+    const solid = this.state.scrolled;
+    const veil = this.props.heroOverlay ?? 0.62;
+    const hide = e => { e.currentTarget.style.display = 'none'; };
+    const prodMsg = 'Olá! Vi este produto no site da Top Country e gostaria de saber mais sobre disponibilidade.';
+    const cfg = this.state.cfg || { heroTitle: 'TOP COUNTRY', heroTagline: 'Seu estilo. Sua essência. Seu jeito country.', heroSubtitle: 'Moda country para quem carrega personalidade em cada detalhe.', heroImage: 'assets/images/hero/hero.jpg', whatsapp: this.wa };
+    const produtos = (this.state.produtos.length ? this.state.produtos : this.props.$fallbackProdutos || []).map(p => ({
+      ...p,
+      precoLabel: p.preco ? p.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : 'Consultar disponibilidade',
+      waLink: this.link(prodMsg)
+    }));
+    return {
+      cfg, produtos,
+      waProd: this.link(prodMsg),
+      waHero: this.link('Olá! Vim pelo site da Top Country e gostaria de mais informações.'),
+      waShop: this.link('Olá! Gostaria de comprar pelo WhatsApp na Top Country.'),
+      mapsUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('R. Ozanan Pimenta, 84 - Centro, Capelinha - MG'),
+      hideImg: hide,
+      toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
+      closeMenu: () => this.setState({ menu: false }),
+      heroOverlayStyle: 'position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,' + Math.min(1, veil + 0.28) + ') 0%,rgba(11,11,11,' + veil + ') 45%,rgba(11,11,11,' + Math.max(0, veil - 0.3) + ') 100%)',
+      headerStyle: 'position:fixed;top:0;left:0;right:0;z-index:50;transition:background .5s ease, backdrop-filter .5s ease, border-color .5s ease;border-bottom:1px solid ' + (solid ? 'rgba(216,197,163,.14)' : 'transparent') + ';background:' + (solid ? 'rgba(11,11,11,.94)' : 'transparent') + ';backdrop-filter:' + (solid ? 'blur(10px)' : 'none'),
+      drawerStyle: 'position:fixed;inset:0;z-index:49;background:#0B0B0B;padding:calc(clamp(64px,7vw,88px) + 28px) clamp(24px,6vw,48px) 40px;overflow-y:auto;transition:opacity .45s ease, transform .45s cubic-bezier(.16,1,.3,1);opacity:' + (this.state.menu ? '1' : '0') + ';transform:translateY(' + (this.state.menu ? '0' : '-14px') + ');pointer-events:' + (this.state.menu ? 'auto' : 'none'),
+      bar1: 'display:block;height:1px;background:#F4F0E8;transition:transform .35s ease;transform:' + (this.state.menu ? 'translateY(3.5px) rotate(45deg)' : 'none'),
+      bar2: 'display:block;height:1px;background:#F4F0E8;transition:transform .35s ease;transform:' + (this.state.menu ? 'translateY(-3.5px) rotate(-45deg)' : 'none')
+    };
+  }
+}
+</script>
+</body>
+</html>

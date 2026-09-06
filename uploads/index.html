@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title></title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #000;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      touch-action: none;
+      cursor: grab;
+    }
+
+    body:active {
+      cursor: grabbing;
+    }
+
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    (function () {
+      const TOTAL_FRAMES = 259;
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d', { alpha: false });
+
+      // Cache array for preloaded Image elements
+      const images = new Array(TOTAL_FRAMES);
+
+      // Scroll & Animation Physics State
+      let targetProgress = 0;
+      let currentProgress = 0;
+      const EASE = 0.09;
+      const WHEEL_SENSITIVITY = 0.00065;
+      const DRAG_SENSITIVITY = 0.0018;
+
+      // Pointer / Touch State
+      let isPointerDown = false;
+      let lastPointerY = 0;
+      let lastPointerTime = 0;
+      let pointerVelocity = 0;
+      let lastFrameTime = performance.now();
+
+      // Build image URL for frame index (0 to 258)
+      function getFrameUrl(index) {
+        const frameNum = String(index + 1).padStart(3, '0');
+        return `ezgif-frame-${frameNum}.jpg`;
+      }
+
+      // Preload images
+      function initImages() {
+        // Load initial frame first for immediate render
+        const firstImg = new Image();
+        firstImg.src = getFrameUrl(0);
+        images[0] = firstImg;
+        firstImg.onload = () => {
+          render(performance.now());
+        };
+
+        // Asynchronously preload all remaining frames
+        for (let i = 1; i < TOTAL_FRAMES; i++) {
+          const img = new Image();
+          img.src = getFrameUrl(i);
+          images[i] = img;
+          if (img.decode) {
+            img.decode().catch(() => {});
+          }
+        }
+      }
+
+      // Fallback to nearest loaded frame to eliminate any blank flashes
+      function getReadyImage(index) {
+        const primary = images[index];
+        if (primary && primary.complete && primary.naturalWidth > 0) {
+          return primary;
+        }
+
+        for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+          const prev = ((index - offset) % TOTAL_FRAMES + TOTAL_FRAMES) % TOTAL_FRAMES;
+          const pImg = images[prev];
+          if (pImg && pImg.complete && pImg.naturalWidth > 0) {
+            return pImg;
+          }
+          const next = (index + offset) % TOTAL_FRAMES;
+          const nImg = images[next];
+          if (nImg && nImg.complete && nImg.naturalWidth > 0) {
+            return nImg;
+          }
+        }
+
+        return null;
+      }
+
+      // Resize canvas with device pixel ratio scaling
+      function resize() {
+        const dpr = window.devicePixelRatio || 1;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      // Render image centered with 'contain' aspect ratio
+      function drawImageContained(img, opacity = 1) {
+        if (!img) return;
+
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const imgW = img.naturalWidth || 1080;
+        const imgH = img.naturalHeight || 1920;
+
+        const scale = Math.min(w / imgW, h / imgH);
+        const drawW = imgW * scale;
+        const drawH = imgH * scale;
+        const x = (w - drawW) * 0.5;
+        const y = (h - drawH) * 0.5;
+
+        if (opacity < 1) {
+          ctx.globalAlpha = opacity;
+        }
+
+        ctx.drawImage(img, x, y, drawW, drawH);
+
+        if (opacity < 1) {
+          ctx.globalAlpha = 1.0;
+        }
+      }
+
+      // Main render loop
+      function render(now) {
+        const dt = Math.min(Math.max(now - lastFrameTime, 1), 100);
+        lastFrameTime = now;
+
+        // Frame-rate independent LERP calculation
+        const dtRatio = dt / 16.667;
+        const frameEase = 1 - Math.pow(1 - EASE, dtRatio);
+        const diff = targetProgress - currentProgress;
+        currentProgress += diff * frameEase;
+
+        // Prevent number overflow while preserving exact fractional progress
+        if (Math.abs(currentProgress) > 500) {
+          const loops = Math.floor(currentProgress);
+          currentProgress -= loops;
+          targetProgress -= loops;
+        }
+
+        // Infinite normalized progress (0.0 to 1.0)
+        const normalized = ((currentProgress % 1) + 1) % 1;
+        const exactFrame = normalized * TOTAL_FRAMES;
+        const currentFrame = Math.floor(exactFrame) % TOTAL_FRAMES;
+
+        // Clear canvas with pitch black
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(0, 0, w, h);
+
+        // Render current crisp frame
+        const imgCurrent = getReadyImage(currentFrame);
+        if (imgCurrent) {
+          drawImageContained(imgCurrent, 1.0);
+        }
+
+        // Seamless dissolve transition across loop boundary (frame 258 -> frame 0)
+        if (currentFrame === TOTAL_FRAMES - 1) {
+          const seamProgress = exactFrame - (TOTAL_FRAMES - 1);
+          const imgFirst = getReadyImage(0);
+          if (imgFirst && seamProgress > 0.01) {
+            drawImageContained(imgFirst, seamProgress);
+          }
+        }
+
+        requestAnimationFrame(render);
+      }
+
+      // Wheel Event (Mouse wheel and precision trackpad)
+      window.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        targetProgress += e.deltaY * WHEEL_SENSITIVITY;
+      }, { passive: false });
+
+      // Touch Events (Mobile & Tablet)
+      window.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isPointerDown = true;
+          lastPointerY = e.touches[0].clientY;
+          lastPointerTime = performance.now();
+          pointerVelocity = 0;
+        }
+      }, { passive: false });
+
+      window.addEventListener('touchmove', (e) => {
+        if (isPointerDown && e.touches.length === 1) {
+          e.preventDefault();
+          const currentY = e.touches[0].clientY;
+          const deltaY = lastPointerY - currentY;
+          const now = performance.now();
+          const dt = Math.max(now - lastPointerTime, 1);
+
+          pointerVelocity = (deltaY / dt) * 16;
+          targetProgress += deltaY * DRAG_SENSITIVITY;
+
+          lastPointerY = currentY;
+          lastPointerTime = now;
+        }
+      }, { passive: false });
+
+      window.addEventListener('touchend', () => {
+        if (isPointerDown) {
+          isPointerDown = false;
+          targetProgress += pointerVelocity * 0.04;
+        }
+      });
+
+      // Pointer / Mouse Drag Events
+      window.addEventListener('pointerdown', (e) => {
+        if (e.button === 0 && e.pointerType !== 'touch') {
+          isPointerDown = true;
+          lastPointerY = e.clientY;
+          lastPointerTime = performance.now();
+          pointerVelocity = 0;
+        }
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (isPointerDown && e.pointerType !== 'touch') {
+          const currentY = e.clientY;
+          const deltaY = lastPointerY - currentY;
+          const now = performance.now();
+          const dt = Math.max(now - lastPointerTime, 1);
+
+          pointerVelocity = (deltaY / dt) * 16;
+          targetProgress += deltaY * DRAG_SENSITIVITY;
+
+          lastPointerY = currentY;
+          lastPointerTime = now;
+        }
+      });
+
+      function onPointerUp(e) {
+        if (isPointerDown && e.pointerType !== 'touch') {
+          isPointerDown = false;
+          targetProgress += pointerVelocity * 0.04;
+        }
+      }
+
+      window.addEventListener('pointerup', onPointerUp);
+      window.addEventListener('pointercancel', onPointerUp);
+
+      // Keyboard Navigation
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+          e.preventDefault();
+          targetProgress += 0.04;
+        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+          e.preventDefault();
+          targetProgress -= 0.04;
+        }
+      });
+
+      // Window Resize & Orientation Change
+      window.addEventListener('resize', resize);
+      window.addEventListener('orientationchange', resize);
+
+      // Initialize
+      resize();
+      initImages();
+      requestAnimationFrame(render);
+    })();
+  </script>
+</body>
+</html>

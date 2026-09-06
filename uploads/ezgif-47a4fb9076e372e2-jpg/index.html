@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Animação de Rolagem Suave</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #050507;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+    }
+
+    /* Container com proporção de tela de smartphone / viewport mobile */
+    .viewport {
+      width: 100%;
+      max-width: 480px;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background-color: #ffffff;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+    }
+
+    /* Trilha de rolagem contínua infinita */
+    .scroll-track {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      will-change: transform;
+      animation: smoothScroll 20s linear infinite;
+    }
+
+    .scroll-track img {
+      width: 100%;
+      height: auto;
+      display: block;
+      flex-shrink: 0;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Animação perfeitamente fluida e matematicamente contínua */
+    @keyframes smoothScroll {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(0, -50%, 0);
+      }
+    }
+
+    /* Modo Canvas para reprodução fluida dos frames originais */
+    #frameCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="viewport" id="viewport">
+    <!-- Modo 1: Rolagem Contínua Infinita (Stitched Seamless) -->
+    <div class="scroll-track" id="scrollTrack">
+      <img src="stitched_page.jpg" alt="">
+      <img src="stitched_page.jpg" alt="">
+    </div>
+
+    <!-- Modo 2: Canvas de interpolação fluida dos 223 frames -->
+    <canvas id="frameCanvas" width="720" height="992"></canvas>
+  </div>
+
+  <script>
+    const viewport = document.getElementById('viewport');
+    const scrollTrack = document.getElementById('scrollTrack');
+    const canvas = document.getElementById('frameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Pré-carregamento dos 223 frames em segundo plano para máxima fluidez
+    const totalFrames = 223;
+    const frames = [];
+    let framesLoaded = false;
+    let currentMode = 'stitched'; // 'stitched' ou 'frames'
+    let frameIndex = 1;
+    let forward = true;
+    let animId = null;
+
+    function preloadFrames() {
+      let loadedCount = 0;
+      for (let i = 1; i <= totalFrames; i++) {
+        const img = new Image();
+        const num = String(i).padStart(3, '0');
+        img.src = `ezgif-frame-${num}.jpg`;
+        img.onload = () => {
+          loadedCount++;
+          if (loadedCount === totalFrames) {
+            framesLoaded = true;
+          }
+        };
+        frames.push(img);
+      }
+    }
+
+    preloadFrames();
+
+    // Renderização dos frames com interpolação contínua (ping-pong suave)
+    let lastTime = 0;
+    const fps = 36;
+    const interval = 1000 / fps;
+
+    function renderFrames(timestamp) {
+      if (!lastTime) lastTime = timestamp;
+      const delta = timestamp - lastTime;
+
+      if (delta >= interval) {
+        lastTime = timestamp - (delta % interval);
+
+        if (frames[frameIndex - 1] && frames[frameIndex - 1].complete) {
+          ctx.drawImage(frames[frameIndex - 1], 0, 0, canvas.width, canvas.height);
+        }
+
+        if (forward) {
+          frameIndex++;
+          if (frameIndex >= totalFrames) {
+            forward = false;
+          }
+        } else {
+          frameIndex--;
+          if (frameIndex <= 1) {
+            forward = true;
+          }
+        }
+      }
+
+      animId = requestAnimationFrame(renderFrames);
+    }
+
+    // Alternância suave com clique na tela (sem adicionar qualquer botão ou texto)
+    viewport.addEventListener('click', () => {
+      if (!framesLoaded) return;
+
+      if (currentMode === 'stitched') {
+        currentMode = 'frames';
+        scrollTrack.style.display = 'none';
+        canvas.style.display = 'block';
+        lastTime = 0;
+        animId = requestAnimationFrame(renderFrames);
+      } else {
+        currentMode = 'stitched';
+        cancelAnimationFrame(animId);
+        canvas.style.display = 'none';
+        scrollTrack.style.display = 'flex';
+      }
+    });
+  </script>
+</body>
+</html>
